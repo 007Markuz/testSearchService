@@ -1,0 +1,2 @@
+com/test/searchService/SearchServiceApplicationTests.java
+ com.test.searchService.SearchServiceApplicationTests

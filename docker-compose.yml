@@ -1,0 +1,8 @@
+version: '2.1'
+services:
+  testsearchservice:
+    container_name: testsearchservice
+    image: testsearchservice
+    build: .
+    ports:
+      - '9001:8080'

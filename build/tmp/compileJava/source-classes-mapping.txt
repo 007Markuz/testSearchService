@@ -1,0 +1,4 @@
+com/test/searchService/SearchServiceApplication.java
+ com.test.searchService.SearchServiceApplication
+com/test/searchService/presentation/endpoints/ProductsControllers.java
+ com.test.searchService.presentation.endpoints.ProductsControllers
