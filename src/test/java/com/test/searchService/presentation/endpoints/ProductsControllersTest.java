@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import com.test.searchService.domain.service.ProductsServiceImpl;
 import com.test.searchService.presentation.response.ProductResponse;
 import com.test.searchService.presentation.response.ProductsResponse;
+import java.sql.Array;
+import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,28 +16,27 @@ class ProductsControllersTest {
 
 
   private ProductsServiceImpl productsService = mock(ProductsServiceImpl.class);
-  private ProductsControllers productsControllers=  new ProductsControllers(productsService);
+  private ProductsControllers productsControllers;
 
   @BeforeEach
   void setUp() {
 
-    ProductResponse productExpect = new ProductResponse();
-    productExpect.id =1;
-    productExpect.brand ="foo";
-    productExpect.description ="dsaasd";
-    productExpect.image ="dsaasd";
-    productExpect.price =100;
-    productExpect.discount =false;
+    productsControllers=  new ProductsControllers(productsService);
+    ProductsResponse productsResponse = new ProductsResponse();
+    productsResponse.products= new ArrayList<ProductResponse>();
+
+    when(productsService.getProducts("testTest")).thenReturn(productsResponse);
 
     ProductsResponse productsResponseUne = new ProductsResponse();
+    productsResponseUne.products = new ArrayList<ProductResponse>();
     productsResponseUne.products.add(getProduct(1, "foo", 100,false));
-
-    when(ProductsServiceImpl.getProducts("foo")).thenReturn(productsResponseUne);
+    when(productsService.getProducts("foo")).thenReturn(productsResponseUne);
 
     ProductsResponse productsResponseTwo = new ProductsResponse();
+    productsResponseTwo.products = new ArrayList<ProductResponse>();
     productsResponseTwo.products.add(getProduct(2, "dsaasd", 50.5,true));
     productsResponseTwo.products.add(getProduct(3, "dsaasd", 50.5,true));
-    when(ProductsServiceImpl.getProducts("dsaasd")).thenReturn(productsResponseTwo);
+    when(productsService.getProducts("dsaasd")).thenReturn(productsResponseTwo);
 
   }
 
@@ -53,7 +54,7 @@ class ProductsControllersTest {
     ProductsResponse productsResponse = productsControllers.getProducts("foo");
     assertThat(productsResponse.products.isEmpty()).isFalse();
     assertThat(productsResponse.products.size()).isEqualTo(1);
-    assertThat(productsResponse.products.get(0)).isEqualTo(getProduct(1, "dsaasd", 100,false));
+    assertThat(productsResponse.products.get(0)).isEqualTo(getProduct(1, "foo", 100,false));
 
   }
 
@@ -64,6 +65,7 @@ class ProductsControllersTest {
     assertThat(productsResponse.products.isEmpty()).isFalse();
     assertThat(productsResponse.products.size()).isEqualTo(2);
     assertThat(productsResponse.products.get(0)).isEqualTo(getProduct(2, "dsaasd", 50.5,true));
+    assertThat(productsResponse.products.get(1)).isEqualTo(getProduct(3, "dsaasd", 50.5,true));
   }
 
 
