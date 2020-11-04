@@ -61,11 +61,11 @@ class ProductsControllersTest {
   @Test
   void getProductsWithPalindromeBrandThemReturnList() {
 
-    ProductsResponse productsResponse = productsControllers.getProducts("dsaasd");
+    ProductsResponse productsResponse = productsControllers.getProducts("foo");
     assertThat(productsResponse.products.isEmpty()).isFalse();
     assertThat(productsResponse.products.size()).isEqualTo(2);
     assertThat(productsResponse.products.get(0)).isEqualTo(getProduct(2, "dsaasd", 50.5,true));
-    assertThat(productsResponse.products.get(1)).isEqualTo(getProduct(3, "dsaasd", 50.5,true));
+    assertThat(productsResponse.products.get(1)).isEqualTo(getProduct(4, "dsaasd", 50.5,true));
   }
 
 

@@ -157,7 +157,7 @@ class ProductsServiceImplTest {
   @Test
   void isPalindromeFalse() {
 
-    assertThat(productsService.isPalindrome("sabba")).isTrue();
+    assertThat(productsService.isPalindrome("sabba")).isFalse();
   }
 
 
