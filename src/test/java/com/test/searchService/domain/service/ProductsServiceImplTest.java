@@ -19,40 +19,42 @@ import static org.mockito.Mockito.when;
 
 class ProductsServiceImplTest {
 
-  @Mock
-  private ProductsRepository productsRepository;
 
-  @InjectMocks
-  private ProductsServiceImpl productsControllers;
+  private ProductsRepository productsRepository = mock(ProductsRepository.class);
+
+  private ProductsServiceImpl productsService;
 
   @BeforeEach
   void setUp() {
+    productsService = new ProductsServiceImpl(productsRepository);
 
-    ProductResponse productExpect = new ProductResponse();
-    productExpect.id =1;
-    productExpect.brand ="foo";
-    productExpect.description ="dsaasd";
-    productExpect.image ="dsaasd";
-    productExpect.price =100;
-    productExpect.discount =false;
+    List<ProductEntity> productsListUne = new ArrayList<ProductEntity>();
+    productsListUne.add(getProduct(1, "foo", 100));
 
-    List<ProductEntity> productsResponseUne = new ArrayList<ProductEntity>();
-    productsResponseUne.add(getProduct(1, "foo", 100));
-
-    when(productsRepository.fingByBrand("foo")).thenReturn(productsResponseUne);
+    when(productsRepository.findByBrand("foo")).thenReturn(productsListUne);
 
     List<ProductEntity> productsResponseTwo = new ArrayList<ProductEntity>();
     productsResponseTwo.add(getProduct(2, "dsaasd", 101));
     productsResponseTwo.add(getProduct(3, "dsaasd", 101));
 
-    when(productsRepository.fingByBrand("dsaasd")).thenReturn(productsResponseTwo);
+    when(productsRepository.findByBrand("dsaasd")).thenReturn(productsResponseTwo);
+
+    List<ProductEntity> productsResponseThree = new ArrayList<ProductEntity>();
+    productsResponseThree.add(getProduct(2, "dsaasd", 101));
+
+    when(productsRepository.findById(2)).thenReturn(productsResponseThree);
+
+    List<ProductEntity> productsResponseFour = new ArrayList<ProductEntity>();
+    productsResponseFour.add(getProduct(232, "dsaasd", 101));
+
+    when(productsRepository.findById(232)).thenReturn(productsResponseFour);
 
   }
 
   @Test
   void getProductsWithIncorrectBrandThemReturnEmptyList() {
 
-    ProductsResponse productsResponse = productsControllers.getProducts("testTest");
+    ProductsResponse productsResponse = productsService.getProducts("testTest");
     assertThat(productsResponse.products.isEmpty()).isTrue();
   }
 
@@ -60,7 +62,7 @@ class ProductsServiceImplTest {
   @Test
   void getProductsWithCorrectBrandThemReturnList() {
 
-    ProductsResponse productsResponse = productsControllers.getProducts("foo");
+    ProductsResponse productsResponse = productsService.getProducts("foo");
     assertThat(productsResponse.products.isEmpty()).isFalse();
     assertThat(productsResponse.products.size()).isEqualTo(1);
     assertThat(productsResponse.products.get(0)).isEqualTo(
@@ -80,7 +82,7 @@ class ProductsServiceImplTest {
   @Test
   void getProductsWithPalindromeBrandThemReturnList() {
 
-    ProductsResponse productsResponse = productsControllers.getProducts("dsaasd");
+    ProductsResponse productsResponse = productsService.getProducts("dsaasd");
     assertThat(productsResponse.products.isEmpty()).isFalse();
     assertThat(productsResponse.products.size()).isEqualTo(2);
     assertThat(productsResponse.products.get(0)).isEqualTo(
@@ -95,6 +97,69 @@ class ProductsServiceImplTest {
             .build()
     );
   }
+
+  @Test
+  void getProductsWithPalindromedIdThemReturnUneProduct() {
+
+    ProductsResponse productsResponse = productsService.getProducts("2");
+    assertThat(productsResponse.products.isEmpty()).isFalse();
+    assertThat(productsResponse.products.size()).isEqualTo(1);
+    assertThat(productsResponse.products.get(0)).isEqualTo(
+        ProductResponse
+            .builder()
+            .id(2)
+            .brand("dsaasd")
+            .description("dsaasd")
+            .image("dsaasd")
+            .price(50.5)
+            .discount(true)
+            .build()
+    );
+  }
+  @Test
+  void getProductsWithPalindromeLongIdThemUneReturn() {
+
+    ProductsResponse productsResponse = productsService.getProducts("232");
+    assertThat(productsResponse.products.isEmpty()).isFalse();
+    assertThat(productsResponse.products.size()).isEqualTo(1);
+    assertThat(productsResponse.products.get(0)).isEqualTo(
+        ProductResponse
+            .builder()
+            .id(232)
+            .brand("dsaasd")
+            .description("dsaasd")
+            .image("dsaasd")
+            .price(50.5)
+            .discount(true)
+            .build()
+    );
+  }
+  @Test
+  void isNumericTrue() {
+
+    assertThat(productsService.isNumeric("1")).isTrue();
+    assertThat(productsService.isNumeric("1234")).isTrue();
+  }
+  @Test
+  void isNumericFalse() {
+
+    assertThat(productsService.isNumeric("sabba")).isFalse();
+    assertThat(productsService.isNumeric("sabba1")).isFalse();
+    assertThat(productsService.isNumeric("sabba230")).isFalse();
+  }
+
+  @Test
+  void isPalindromeTrue() {
+
+    assertThat(productsService.isPalindrome("sabbas")).isTrue();
+    assertThat(productsService.isPalindrome("sababas")).isTrue();
+  }
+  @Test
+  void isPalindromeFalse() {
+
+    assertThat(productsService.isPalindrome("sabba")).isTrue();
+  }
+
 
 
   private ProductEntity getProduct(int id, String brand, double price){
