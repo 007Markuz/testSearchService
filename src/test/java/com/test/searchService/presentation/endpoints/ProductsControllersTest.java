@@ -1,11 +1,10 @@
 package com.test.searchService.presentation.endpoints;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.test.searchService.domain.service.ProductsServiceImpl;
 import com.test.searchService.presentation.response.ProductResponse;
 import com.test.searchService.presentation.response.ProductsResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Test;
 class ProductsControllersTest {
 
 
-  private ProductsService productsService = mock(ProductsService.class);
+  private ProductsServiceImpl productsService = mock(ProductsServiceImpl.class);
   private ProductsControllers productsControllers=  new ProductsControllers(productsService);
 
   @BeforeEach
@@ -31,12 +30,12 @@ class ProductsControllersTest {
     ProductsResponse productsResponseUne = new ProductsResponse();
     productsResponseUne.products.add(getProduct(1, "foo", 100,false));
 
-    when(ProductsService.getProducts("foo")).thenReturn(productsResponseUne);
+    when(ProductsServiceImpl.getProducts("foo")).thenReturn(productsResponseUne);
 
     ProductsResponse productsResponseTwo = new ProductsResponse();
     productsResponseTwo.products.add(getProduct(2, "dsaasd", 50.5,true));
     productsResponseTwo.products.add(getProduct(3, "dsaasd", 50.5,true));
-    when(ProductsService.getProducts("dsaasd")).thenReturn(productsResponseTwo);
+    when(ProductsServiceImpl.getProducts("dsaasd")).thenReturn(productsResponseTwo);
 
   }
 
