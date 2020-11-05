@@ -1,90 +1,82 @@
 package com.test.searchService.domain.service;
 
-import com.test.searchService.presentation.endpoints.ProductsControllers;
+
+import com.test.searchService.entity.ProductEntity;
 import com.test.searchService.presentation.response.ProductResponse;
 import com.test.searchService.presentation.response.ProductsResponse;
-
-public class ProductsService {
-
-  package com.test.searchService.presentation.endpoints;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import com.test.searchService.presentation.response.ProductResponse;
-import com.test.searchService.presentation.response.ProductsResponse;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-  class ProductsControllersTest {
+import com.test.searchService.repositories.ProductsRepository;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
 
 
-    private ProductsService productsService = mock(ProductsService.class);
-    private ProductsControllers productsControllers=  new ProductsControllers(productsService);
+@Service
+public class ProductsServiceImpl implements ProductsService {
 
-    @BeforeEach
-    void setUp() {
+  private ProductsRepository productsRepository;
+  private boolean switchDiscount = false;
 
-      ProductResponse productExpect = new ProductResponse();
-      productExpect.id =1;
-      productExpect.brand ="foo";
-      productExpect.description ="dsaasd";
-      productExpect.image ="dsaasd";
-      productExpect.price =100;
-      productExpect.discount =false;
 
-      ProductsResponse productsResponseUne = new ProductsResponse();
-      productsResponseUne.products.add(getProduct(1, "foo", 100,false));
+  public ProductsServiceImpl(ProductsRepository productsRepository) {
+    this.productsRepository =  productsRepository;
+  }
 
-      when(ProductsService.getProducts("foo")).thenReturn(productsResponseUne);
+  @Override
+  public ProductsResponse getProducts(String key){
+    List<ProductEntity> productList ;
+    ProductsResponse productsResponse = new ProductsResponse();
+    switchDiscount = isPalindrome( key);
 
-      ProductsResponse productsResponseTwo = new ProductsResponse();
-      productsResponseTwo.products.add(getProduct(2, "dsaasd", 50.5,true));
-      productsResponseTwo.products.add(getProduct(3, "dsaasd", 50.5,true));
-      when(ProductsService.getProducts("dsaasd")).thenReturn(productsResponseTwo);
-
+    if(isNumeric(key)){
+      int keyNumeric = Integer.parseInt(key);
+      productList = productsRepository.findById(keyNumeric);
+    }else{
+      productList = productsRepository.findByBrand(key);
     }
 
-    @Test
-    void getProductsWithIncorrectBrandThemReturnEmptyList() {
+    productsResponse.products = productList
+        .stream()
+        .map(getProductEntityProductResponseFunction())
+        .collect(Collectors.toList());
 
-      ProductsResponse productsResponse = productsControllers.getProducts("testTest");
-      assertThat(productsResponse.products.isEmpty()).isTrue();
+    return productsResponse;
+  }
+
+
+  public boolean isNumeric(String key){
+
+    if(key.replaceAll("[*a-zA-Z]", "").equals(key)){
+      return true;
     }
+    return false;
+  }
 
+  @Override
+  public boolean isPalindrome(String key) {
+    List<String> list = Arrays.asList(key.split(""));
+    Collections.reverse(list);
 
-    @Test
-    void getProductsWithCorrectBrandThemReturnList() {
-
-      ProductsResponse productsResponse = productsControllers.getProducts("foo");
-      assertThat(productsResponse.products.isEmpty()).isFalse();
-      assertThat(productsResponse.products.size()).isEqualTo(1);
-      assertThat(productsResponse.products.get(0)).isEqualTo(getProduct(1, "dsaasd", 100,false));
-
+    if(key.equals(String.join("", list))){
+     return true;
     }
+    return false;
+  }
 
-    @Test
-    void getProductsWithPalindromeBrandThemReturnList() {
+  private Function<ProductEntity, ProductResponse> getProductEntityProductResponseFunction() {
+    return entity ->  ProductResponse
+        .builder()
+        .id(entity.getId())
+        .brand(entity.getBrand())
+        .description(entity.getDescription())
+        .image(entity.getImage())
+        .price(switchDiscount?entity.getPrice()/2:entity.getPrice())
+        .brand(entity.getBrand())
+        .discount(switchDiscount)
+        .build();
 
-      ProductsResponse productsResponse = productsControllers.getProducts("dsaasd");
-      assertThat(productsResponse.products.isEmpty()).isFalse();
-      assertThat(productsResponse.products.size()).isEqualTo(2);
-      assertThat(productsResponse.products.get(0)).isEqualTo(getProduct(2, "dsaasd", 50.5,true));
-    }
-
-
-    private ProductResponse getProduct(int id, String brand, double price,boolean discount){
-
-      return ProductResponse.builder()
-          .id(id)
-          .brand(brand)
-          .description(brand)
-          .image(brand)
-          .price(price)
-          .discount(discount).build();
-    }
   }
 }

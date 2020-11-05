@@ -11,13 +11,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document(collection = "promotions")
-public class Product {
+@Document(collection = "products")
+public class ProductEntity {
   @Id
+  private String internaId;
+
   private int id;
   private String brand;
   private String description;
   private String image;
   private double price;
-  private boolean discount;
 }
