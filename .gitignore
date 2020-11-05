@@ -24,3 +24,5 @@ hs_err_pid*
 # folders
 build/reports/*
 build/tmp/*
+.gradle/*
+out/*
