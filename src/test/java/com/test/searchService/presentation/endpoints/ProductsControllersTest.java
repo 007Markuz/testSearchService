@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 import com.test.searchService.domain.service.ProductsServiceImpl;
 import com.test.searchService.presentation.response.ProductResponse;
 import com.test.searchService.presentation.response.ProductsResponse;
-import java.sql.Array;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -37,6 +36,11 @@ class ProductsControllersTest {
     productsResponseTwo.products.add(getProduct(2, "dsaasd", 50.5,true));
     productsResponseTwo.products.add(getProduct(3, "dsaasd", 50.5,true));
     when(productsService.getProducts("dsaasd")).thenReturn(productsResponseTwo);
+
+    ProductsResponse productsResponseThree = new ProductsResponse();
+    productsResponseThree.products = new ArrayList<ProductResponse>();
+    productsResponseThree.products.add(getProduct(2, "dsaasd", 50.5,true));
+    when(productsService.getProducts("2")).thenReturn(productsResponseThree);
 
   }
 

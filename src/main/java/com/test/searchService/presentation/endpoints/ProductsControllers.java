@@ -1,7 +1,6 @@
 package com.test.searchService.presentation.endpoints;
 
 import com.test.searchService.domain.service.ProductsService;
-import com.test.searchService.domain.service.ProductsServiceImpl;
 import com.test.searchService.presentation.response.ProductsResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
