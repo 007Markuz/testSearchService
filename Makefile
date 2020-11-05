@@ -12,7 +12,7 @@ docker-run:
 	docker-compose up --build -d
 
 unit-test:
-	./gradlew unitTest --warning-mode=all
+	./gradlew test --warning-mode=all
 
 integration-test:
 	./gradlew integrationTest --warning-mode=all

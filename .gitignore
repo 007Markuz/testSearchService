@@ -25,4 +25,3 @@ hs_err_pid*
 build/reports/*
 build/tmp/*
 .gradle/*
-out/*

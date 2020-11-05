@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.test.searchService.domain.service.ProductsServiceImplTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2020-11-05T00:24:41" hostname="CL-IT00308" time="0.152">
+  <properties/>
+  <testcase name="isPalindromeFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.104"/>
+  <testcase name="isNumericTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithPalindromedIdThemReturnUneProduct()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.013"/>
+  <testcase name="getProductsWithPalindromeLongIdThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.004"/>
+  <testcase name="isPalindromeTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.004"/>
+  <testcase name="getProductsWithIncorrectBrandThemReturnEmptyList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="isNumericFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.004"/>
+  <testcase name="getProductsWithPalindromeBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
+  <testcase name="getProductsWithCorrectBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

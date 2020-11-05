@@ -4,5 +4,9 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="searchService.integrationTest" target="11" />
+      <module name="searchService.unitTest" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
