@@ -7,7 +7,7 @@ run:
 	./gradlew bootRun --warning-mode=all
 
 docker-run:
-	./gradlew build
+	./gradlew build --warning-mode=all
 	docker-compose down
 	docker-compose up --build -d
 
@@ -17,6 +17,6 @@ unit-test:
 integration-test:
 	./gradlew integrationTest --warning-mode=all
 
-test: unit-test integration-test
+test: unit-test
 
-pre-commit: sonar test dependency-check
+pre-commit: test build-app
