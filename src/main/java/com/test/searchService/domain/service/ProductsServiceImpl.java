@@ -5,12 +5,15 @@ import com.test.searchService.entity.ProductEntity;
 import com.test.searchService.presentation.response.ProductResponse;
 import com.test.searchService.presentation.response.ProductsResponse;
 import com.test.searchService.repositories.ProductsRepository;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 
@@ -21,8 +24,12 @@ public class ProductsServiceImpl implements ProductsService {
   private boolean switchDiscount = false;
 
 
-  public ProductsServiceImpl(ProductsRepository productsRepository) {
+  private double percentage;
+
+
+  public ProductsServiceImpl(ProductsRepository productsRepository, @Value("${percentage}") double percentage) {
     this.productsRepository =  productsRepository;
+    this.percentage = percentage;
   }
 
   @Override
@@ -46,7 +53,7 @@ public class ProductsServiceImpl implements ProductsService {
     return productsResponse;
   }
 
-
+  @Override
   public boolean isNumeric(String key){
 
     if(key.replaceAll("[*a-zA-Z]", "").equals(key)){
@@ -66,17 +73,25 @@ public class ProductsServiceImpl implements ProductsService {
     return false;
   }
 
+  public double getPriceWhitDiscount(double price){
+
+    if(switchDiscount){
+      price =price-(price*(percentage/100));
+    }
+    return price;
+  }
+
   private Function<ProductEntity, ProductResponse> getProductEntityProductResponseFunction() {
+
     return entity ->  ProductResponse
         .builder()
         .id(entity.getId())
         .brand(entity.getBrand())
         .description(entity.getDescription())
         .image(entity.getImage())
-        .price(switchDiscount?entity.getPrice()/2:entity.getPrice())
+        .price( getPriceWhitDiscount(entity.getPrice()) )
         .brand(entity.getBrand())
-        .discount(switchDiscount)
+        .discount(switchDiscount?(int)percentage:0)
         .build();
-
   }
 }

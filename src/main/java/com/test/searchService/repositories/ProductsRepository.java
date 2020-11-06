@@ -4,7 +4,6 @@ package com.test.searchService.repositories;
 import com.test.searchService.entity.ProductEntity;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
 import org.springframework.stereotype.Repository;
 
 @Repository

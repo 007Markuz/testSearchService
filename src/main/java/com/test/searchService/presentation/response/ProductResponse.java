@@ -15,5 +15,5 @@ public class ProductResponse {
   public String description;
   public String image;
   public double price;
-  public boolean discount;
+  public int discount;
 }

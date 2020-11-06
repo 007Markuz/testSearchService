@@ -10,4 +10,7 @@ public interface ProductsService {
   ProductsResponse getProducts(String key);
 
   boolean isPalindrome(String key);
+
+  boolean isNumeric(String key);
+
 }
