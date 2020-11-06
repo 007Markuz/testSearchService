@@ -20,11 +20,11 @@ class ProductsServiceImplTest {
 
   private ProductsRepository productsRepository = mock(ProductsRepository.class);
 
-  private ProductsServiceImpl productsService;
+  private ProductsServiceImpl productsService= new ProductsServiceImpl(productsRepository,50);
+  private ProductsServiceImpl productsServiceTwo= new ProductsServiceImpl(productsRepository,10);
 
   @BeforeEach
   void setUp() {
-    productsService = new ProductsServiceImpl(productsRepository);
 
     List<ProductEntity> productsListUne = new ArrayList<ProductEntity>();
     productsListUne.add(getProduct(1, "foo", 100));
@@ -71,7 +71,7 @@ class ProductsServiceImplTest {
             .description("foo")
             .image("foo")
             .price(100)
-            .discount(false)
+            .discount(0)
             .build()
     );
 
@@ -91,7 +91,7 @@ class ProductsServiceImplTest {
             .description("dsaasd")
             .image("dsaasd")
             .price(50.5)
-            .discount(true)
+            .discount(50)
             .build()
     );
   }
@@ -110,7 +110,7 @@ class ProductsServiceImplTest {
             .description("dsaasd")
             .image("dsaasd")
             .price(50.5)
-            .discount(true)
+            .discount(50)
             .build()
     );
   }
@@ -128,10 +128,30 @@ class ProductsServiceImplTest {
             .description("dsaasd")
             .image("dsaasd")
             .price(50.5)
-            .discount(true)
+            .discount(50)
             .build()
     );
   }
+
+  @Test
+  void getProductsWithDiscountThemUneReturn() {
+
+    ProductsResponse productsResponse = productsServiceTwo.getProducts("232");
+    assertThat(productsResponse.products.isEmpty()).isFalse();
+    assertThat(productsResponse.products.size()).isEqualTo(1);
+    assertThat(productsResponse.products.get(0)).isEqualTo(
+        ProductResponse
+            .builder()
+            .id(232)
+            .brand("dsaasd")
+            .description("dsaasd")
+            .image("dsaasd")
+            .price(90.9)
+            .discount(10)
+            .build()
+    );
+  }
+
   @Test
   void isNumericTrue() {
 
@@ -157,7 +177,6 @@ class ProductsServiceImplTest {
 
     assertThat(productsService.isPalindrome("sabba")).isFalse();
   }
-
 
 
   private ProductEntity getProduct(int id, String brand, double price){
