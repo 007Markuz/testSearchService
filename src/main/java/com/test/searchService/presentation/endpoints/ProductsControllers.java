@@ -2,6 +2,7 @@ package com.test.searchService.presentation.endpoints;
 
 import com.test.searchService.domain.service.ProductsService;
 import com.test.searchService.presentation.response.ProductsResponse;
+import javax.annotation.processing.SupportedOptions;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,10 +25,11 @@ public class ProductsControllers {
    * @param key
    * @return ProductsResponse
    */
-  @CrossOrigin(origins="http://localhost:4200/")
+  @CrossOrigin(origins="https://test-search-web.herokuapp.com/")
   @GetMapping("/products")
   public ProductsResponse getProducts(@RequestParam String key){
 
     return productsService.getProducts(key);
   }
+
 }
