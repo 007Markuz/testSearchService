@@ -29,13 +29,13 @@ class ProductsServiceImplTest {
     List<ProductEntity> productsListUne = new ArrayList<ProductEntity>();
     productsListUne.add(getProduct(1, "foo", 100));
 
-    when(productsRepository.findByBrand("foo")).thenReturn(productsListUne);
+    when(productsRepository.findByBrandLikeOrDescriptionLike("foo","foo")).thenReturn(productsListUne);
 
     List<ProductEntity> productsResponseTwo = new ArrayList<ProductEntity>();
     productsResponseTwo.add(getProduct(2, "dsaasd", 101));
     productsResponseTwo.add(getProduct(3, "dsaasd", 101));
 
-    when(productsRepository.findByBrand("dsaasd")).thenReturn(productsResponseTwo);
+    when(productsRepository.findByBrandLikeOrDescriptionLike("dsaasd","dsaasd")).thenReturn(productsResponseTwo);
 
     List<ProductEntity> productsResponseThree = new ArrayList<ProductEntity>();
     productsResponseThree.add(getProduct(2, "dsaasd", 101));
