@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.test.searchService.domain.service.ProductsServiceImplTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-11-07T14:01:42" hostname="CL-IT00308" time="0.143">
+<testsuite name="com.test.searchService.domain.service.ProductsServiceImplTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-11-07T14:12:30" hostname="CL-IT00308" time="0.166">
   <properties/>
-  <testcase name="isPalindromeFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.079"/>
+  <testcase name="isPalindromeFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.103"/>
   <testcase name="isNumericTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
-  <testcase name="getProductsWithPalindromedIdThemReturnUneProduct()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.011"/>
-  <testcase name="getProductsWithDiscountThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
+  <testcase name="getProductsWithPalindromedIdThemReturnUneProduct()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.012"/>
+  <testcase name="getProductsWithDiscountThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
   <testcase name="getProductsWithPalindromeLongIdThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
-  <testcase name="isPalindromeTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
-  <testcase name="getProductsWithIncorrectBrandThemReturnEmptyList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.007"/>
-  <testcase name="isNumericFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.004"/>
-  <testcase name="getProductsWithPalindromeBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
-  <testcase name="getProductsWithCorrectBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
-  <system-out><![CDATA[2020-11-07 11:01:42.824  INFO 34225 --- [ngodb.net:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=cluster0-shard-00-00.aiwpw.mongodb.net:27017, type=REPLICA_SET_SECONDARY, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=180689109, setName='atlas-q9m2h1-shard-0', canonicalAddress=cluster0-shard-00-00.aiwpw.mongodb.net:27017, hosts=[cluster0-shard-00-00.aiwpw.mongodb.net:27017, cluster0-shard-00-02.aiwpw.mongodb.net:27017, cluster0-shard-00-01.aiwpw.mongodb.net:27017], passives=[], arbiters=[], primary='cluster0-shard-00-01.aiwpw.mongodb.net:27017', tagSet=TagSet{[Tag{name='nodeType', value='ELECTABLE'}, Tag{name='provider', value='AWS'}, Tag{name='region', value='US_EAST_1'}, Tag{name='workloadType', value='OPERATIONAL'}]}, electionId=null, setVersion=1, lastWriteDate=Sat Nov 07 11:01:53 CLST 2020, lastUpdateTimeNanos=1751398128528397}
-]]></system-out>
+  <testcase name="isPalindromeTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
+  <testcase name="getProductsWithIncorrectBrandThemReturnEmptyList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="isNumericFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithPalindromeBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithCorrectBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

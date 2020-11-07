@@ -68,7 +68,7 @@ public class ProductsIntegrationTest {
         ProductsResponse.class);
 
     Assertions.assertEquals(HttpStatus.OK, entity.getStatusCode());
-    Assertions.assertEquals("https://test-search-web.herokuapp.com/", entity.getHeaders().getAccessControlAllowOrigin());
+    Assertions.assertEquals("*", entity.getHeaders().getAccessControlAllowOrigin());
     ProductsResponse response = entity.getBody();
     Assertions.assertEquals(1, response.products.size());
   }
