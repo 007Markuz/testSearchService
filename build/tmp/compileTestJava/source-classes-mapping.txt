@@ -1,4 +1,4 @@
-com/test/searchService/presentation/endpoints/ProductsControllersTest.java
- com.test.searchService.presentation.endpoints.ProductsControllersTest
 com/test/searchService/domain/service/ProductsServiceImplTest.java
  com.test.searchService.domain.service.ProductsServiceImplTest
+com/test/searchService/presentation/endpoints/ProductsControllersTest.java
+ com.test.searchService.presentation.endpoints.ProductsControllersTest
