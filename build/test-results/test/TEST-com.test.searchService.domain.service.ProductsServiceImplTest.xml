@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.test.searchService.domain.service.ProductsServiceImplTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-11-07T11:52:40" hostname="CL-IT00308" time="0.111">
+<testsuite name="com.test.searchService.domain.service.ProductsServiceImplTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-11-07T13:50:12" hostname="CL-IT00308" time="0.133">
   <properties/>
-  <testcase name="isPalindromeFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.078"/>
-  <testcase name="isNumericTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
-  <testcase name="getProductsWithPalindromedIdThemReturnUneProduct()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.007"/>
-  <testcase name="getProductsWithDiscountThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
-  <testcase name="getProductsWithPalindromeLongIdThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.002"/>
-  <testcase name="isPalindromeTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.002"/>
-  <testcase name="getProductsWithIncorrectBrandThemReturnEmptyList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
-  <testcase name="isNumericFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
-  <testcase name="getProductsWithPalindromeBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
-  <testcase name="getProductsWithCorrectBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.003"/>
+  <testcase name="isPalindromeFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.073"/>
+  <testcase name="isNumericTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithPalindromedIdThemReturnUneProduct()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.009"/>
+  <testcase name="getProductsWithDiscountThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
+  <testcase name="getProductsWithPalindromeLongIdThemUneReturn()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.006"/>
+  <testcase name="isPalindromeTrue()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithIncorrectBrandThemReturnEmptyList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.004"/>
+  <testcase name="isNumericFalse()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithPalindromeBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.005"/>
+  <testcase name="getProductsWithCorrectBrandThemReturnList()" classname="com.test.searchService.domain.service.ProductsServiceImplTest" time="0.007"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
