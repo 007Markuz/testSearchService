@@ -42,7 +42,7 @@ public class ProductsServiceImpl implements ProductsService {
       int keyNumeric = Integer.parseInt(key);
       productList = productsRepository.findById(keyNumeric);
     }else{
-      productList = productsRepository.findByBrand(key);
+      productList = productsRepository.findByBrandLikeOrDescriptionLike(key,key);
     }
 
     productsResponse.products = productList
