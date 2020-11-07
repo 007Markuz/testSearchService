@@ -2,6 +2,7 @@ package com.test.searchService.presentation.endpoints;
 
 import com.test.searchService.domain.service.ProductsService;
 import com.test.searchService.presentation.response.ProductsResponse;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +24,7 @@ public class ProductsControllers {
    * @param key
    * @return ProductsResponse
    */
+  @CrossOrigin(origins="http://localhost:4200/")
   @GetMapping("/products")
   public ProductsResponse getProducts(@RequestParam String key){
 
