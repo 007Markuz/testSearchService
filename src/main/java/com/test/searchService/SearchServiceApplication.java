@@ -18,7 +18,7 @@ public class SearchServiceApplication {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://test-search-web.herokuapp.com/");
+				registry.addMapping("/**").allowedOrigins("**");
 			}
 		};
 	}
